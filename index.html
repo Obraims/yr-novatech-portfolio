@@ -275,9 +275,15 @@
             <div class="relative rounded-3xl glass-card p-4 sm:p-5 border border-slate-700/80 shadow-2xl">
               <!-- Avatar Image -->
               <div class="relative w-full aspect-square rounded-2xl overflow-hidden border border-slate-700/60 shadow-inner group">
-                <img src="assets/stephen-avatar.jpg" alt="Stephen Baraka Kakui" class="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700" loading="eager">
-                <div class="absolute inset-0 bg-gradient-to-t from-[#07090e] via-transparent to-transparent opacity-60"></div>
+                <img id="profile-img" src="assets/stephen-avatar.jpg" alt="Stephen Baraka Kakui" class="w-full h-full object-cover object-top transform group-hover:scale-105 transition-transform duration-700" loading="eager">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#07090e] via-transparent to-transparent opacity-60 pointer-events-none"></div>
                 
+                <!-- Real Photo Switcher Controls -->
+                <div class="absolute top-3 right-3 z-10 flex items-center bg-slate-900/90 backdrop-blur-md rounded-lg p-1 border border-slate-700/80 shadow-md">
+                  <button type="button" id="photo-btn-1" onclick="switchPhoto('portrait')" class="px-2.5 py-1 rounded text-[11px] font-mono font-semibold transition-all bg-emerald-500 text-slate-950">Portrait</button>
+                  <button type="button" id="photo-btn-2" onclick="switchPhoto('smile')" class="px-2.5 py-1 rounded text-[11px] font-mono font-semibold transition-all text-slate-400 hover:text-white">Smile</button>
+                </div>
+
                 <!-- Bottom Card Pill -->
                 <div class="absolute bottom-4 left-4 right-4 p-3 rounded-xl bg-slate-900/90 backdrop-blur-md border border-slate-700/70 flex items-center justify-between">
                   <div>
@@ -1242,6 +1248,22 @@
         }, 7000);
       }, 1000);
     });
+
+    // Real Photo Switcher
+    function switchPhoto(type) {
+      const img = document.getElementById('profile-img');
+      const btn1 = document.getElementById('photo-btn-1');
+      const btn2 = document.getElementById('photo-btn-2');
+      if (type === 'portrait') {
+        img.src = 'assets/stephen-avatar.jpg';
+        btn1.className = 'px-2.5 py-1 rounded text-[11px] font-mono font-semibold transition-all bg-emerald-500 text-slate-950';
+        btn2.className = 'px-2.5 py-1 rounded text-[11px] font-mono font-semibold transition-all text-slate-400 hover:text-white';
+      } else {
+        img.src = 'assets/stephen-smile.jpg';
+        btn2.className = 'px-2.5 py-1 rounded text-[11px] font-mono font-semibold transition-all bg-emerald-500 text-slate-950';
+        btn1.className = 'px-2.5 py-1 rounded text-[11px] font-mono font-semibold transition-all text-slate-400 hover:text-white';
+      }
+    }
   </script>
 </body>
 </html>
